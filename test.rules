@@ -1,0 +1,15 @@
+alert tcp any any -> any 3399 (
+                              content:"login";
+                              flowbits:set,userlogin;
+                              flowbits:noalert;
+                              sid:1000001;
+                              rev:1;
+                              )
+alert tcp any any -> any 3399 (
+                              msg:"bot founded";
+                              content:"(?:(?:[01]?\d?\d|2[0-4]\d|[25][0-5])\.){3}(?:[01]?\d?\d|2[0-4]\d|25[0-5])";
+                              flowbits:isset,userlogin;
+                              sid:1000001;
+                              rev:1;
+                              )                             
+                              
